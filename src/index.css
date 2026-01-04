@@ -1,8 +1,9 @@
-/* Import root styles with fonts and CSS variables */
-@import './styles/root.css';
 
 /* Import Tailwind CSS (v4 syntax) */
 @import 'tailwindcss';
+
+/* Import root styles with fonts and CSS variables */
+@import './styles/root.css';
 
 /* Base Styles */
 @layer base {
@@ -58,23 +59,23 @@
   /* Links */
   a {
     text-decoration: none;
-    color: var(--text-primary);
+    color: var(--primary);
     transition: color 0.2s ease;
     position: relative;
   }
 
-  a::after {
+  a::after, button::after {
     content: '';
     position: absolute;
     bottom: -4px;
     left: 0;
     width: 0%;
     height: 2px;
-    background-color: var(--accent);
+    background-color: var(--primary);
     transition: width 0.2s ease-out;
   }
 
-  a:hover::after {
+  a:hover::after, button:hover::after {
     width: 100%;
   }
 
@@ -82,14 +83,12 @@
   code {
     padding: 2px 5px;
     background-color: var(--code-bg);
-    border-radius: 2px;
     font-family: 'Courier New', monospace;
     color: var(--text-primary);
   }
 
   pre {
     padding: 1.5em;
-    border-radius: 8px;
     font-family: 'Courier New', monospace;
     background: var(--code-bg);
     color: var(--text-primary);

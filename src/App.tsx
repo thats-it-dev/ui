@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button } from './components/Button'
+import { Input } from './components/Input'
 
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
@@ -90,6 +91,102 @@ console.log(greet('World'))`}</code></pre>
           </div>
 
           <hr />
+        </div>
+      </section>
+
+      {/* Buttons Section */}
+      <section style={{ marginBottom: '3rem' }}>
+        <h2 style={{ marginBottom: '1.5rem' }}>Buttons</h2>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          {/* Variants */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>Variants</h3>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <Button variant="default">Default Button</Button>
+              <Button variant="secondary">Secondary Button</Button>
+              <Button variant="outline">Outline Button</Button>
+              <Button variant="ghost">Ghost Button</Button>
+            </div>
+          </div>
+
+          {/* Sizes */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>Sizes</h3>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <Button size="sm">Small</Button>
+              <Button size="md">Medium</Button>
+              <Button size="lg">Large</Button>
+            </div>
+          </div>
+
+          {/* States */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>States</h3>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <Button>Normal</Button>
+              <Button disabled>Disabled</Button>
+            </div>
+          </div>
+
+          {/* As Link */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>As Link</h3>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <Button asChild>
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+                  Link Button
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Inputs Section */}
+      <section style={{ marginBottom: '3rem' }}>
+        <h2 style={{ marginBottom: '1.5rem' }}>Inputs</h2>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '400px' }}>
+          {/* Basic Input */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>Basic Input</h3>
+            <Input placeholder="Enter text..." />
+          </div>
+
+          {/* With Label */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>With Label</h3>
+            <Input label="Username" placeholder="Enter your username" />
+          </div>
+
+          {/* Error State */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>Error State</h3>
+            <Input
+              label="Email"
+              placeholder="Enter your email"
+              error
+              errorMessage="Please enter a valid email address"
+            />
+          </div>
+
+          {/* Disabled State */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>Disabled State</h3>
+            <Input label="Disabled" placeholder="This input is disabled" disabled />
+          </div>
+
+          {/* Different Types */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>Different Types</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <Input label="Text" type="text" placeholder="Text input" />
+              <Input label="Password" type="password" placeholder="Enter password" />
+              <Input label="Number" type="number" placeholder="Enter number" />
+              <Input label="Date" type="date" />
+            </div>
+          </div>
         </div>
       </section>
 
