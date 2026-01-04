@@ -88,6 +88,8 @@ function App() {
 
 console.log(greet('World'))`}</code></pre>
           </div>
+
+          <hr />
         </div>
       </section>
 
