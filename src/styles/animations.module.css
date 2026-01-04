@@ -1,0 +1,31 @@
+/* Reusable underline animation base */
+.underlineBase {
+  position: relative;
+}
+
+.underlineBase::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  transition: width 0.2s ease-out;
+}
+
+.underlineBase:hover::after {
+  width: 100%;
+}
+
+/* Color variants */
+.underlinePrimary::after {
+  background-color: var(--primary);
+}
+
+.underlineSecondary::after {
+  background-color: var(--secondary);
+}
+
+.underlineAccent::after {
+  background-color: var(--accent);
+}
