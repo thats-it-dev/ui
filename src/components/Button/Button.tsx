@@ -22,7 +22,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           styles.root,
           styles[variant],
           styles[size],
-          (variant === 'default' || variant === 'secondary') && animations.underline,
+          variant === 'default' && animations.underlineBase && animations.underlinePrimary,
+          variant === 'secondary' && animations.underlineBase && animations.underlineSecondary,
           className
         )}
         {...props}
