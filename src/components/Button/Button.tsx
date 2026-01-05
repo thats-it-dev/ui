@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Slot } from '@radix-ui/react-slot'
+import { twMerge } from 'tailwind-merge'
 import { clsx } from 'clsx'
 import styles from './Button.module.css'
 import animations from '../../styles/animations.module.css'
@@ -18,14 +19,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         ref={ref}
-        className={clsx(
+        className={twMerge(clsx(
           styles.root,
           styles[variant],
           styles[size],
           variant === 'default' && animations.underlineBase && animations.underlinePrimary,
           variant === 'secondary' && animations.underlineBase && animations.underlineSecondary,
           className
-        )}
+        ))}
         {...props}
       />
     )

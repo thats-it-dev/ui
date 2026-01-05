@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { twMerge } from 'tailwind-merge'
 import { clsx } from 'clsx'
 import styles from './Input.module.css'
 
@@ -24,7 +25,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           id={inputId}
-          className={clsx(styles.root, error && styles.error, className)}
+          className={twMerge(clsx(styles.root, error && styles.error, className))}
           aria-invalid={error}
           aria-describedby={error && errorMessage ? `${inputId}-error` : undefined}
           {...props}
