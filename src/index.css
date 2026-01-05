@@ -27,7 +27,6 @@
     color: var(--text-primary);
     font-size: 20px;
     line-height: 1.7;
-    transition: background-color 0.3s ease, color 0.3s ease;
     min-height: 100vh;
   }
 
@@ -82,7 +81,7 @@
   /* Code */
   code {
     padding: 2px 5px;
-    background-color: var(--code-bg);
+    background-color: var(--surface);
     font-family: 'Courier New', monospace;
     color: var(--text-primary);
   }
