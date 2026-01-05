@@ -7,11 +7,26 @@ import animations from '../../styles/animations.module.css'
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * The variant of the button.
+   * @default 'default'
+   */
   variant?: 'default' | 'secondary' | 'outline' | 'ghost'
+  /**
+   * The size of the button.
+   * @default 'md'
+   */
   size?: 'sm' | 'md' | 'lg'
+  /**
+   * Whether to render the button as a child element.
+   * @default false
+   */
   asChild?: boolean
 }
 
+/**
+ * A customizable button component.
+ */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'default', size = 'md', asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button'
