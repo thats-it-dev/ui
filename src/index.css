@@ -89,7 +89,7 @@
   pre {
     padding: 1.5em;
     font-family: 'Courier New', monospace;
-    background: var(--code-bg);
+    background: var(--surface);
     color: var(--text-primary);
   }
 
