@@ -1,6 +1,6 @@
 # @thatsit/ui
 
-A minimalistic UI library built with Radix UI and Tailwind CSS.
+A UI library for thatsit.dev project. built with Radix UI and Tailwind CSS.
 
 ## Installation
 
