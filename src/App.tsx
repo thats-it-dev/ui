@@ -1,9 +1,16 @@
 import { useState } from 'react'
 import { Button } from './components/Button'
 import { Input } from './components/Input'
+import { Dialog } from './components/Dialog'
 
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
+  const [basicDialogOpen, setBasicDialogOpen] = useState(false)
+  const [formDialogOpen, setFormDialogOpen] = useState(false)
+  const [confirmDialogOpen, setConfirmDialogOpen] = useState(false)
+  const [smallDialogOpen, setSmallDialogOpen] = useState(false)
+  const [mediumDialogOpen, setMediumDialogOpen] = useState(false)
+  const [largeDialogOpen, setLargeDialogOpen] = useState(false)
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light'
@@ -186,6 +193,114 @@ console.log(greet('World'))`}</code></pre>
               <Input label="Number" type="number" placeholder="Enter number" />
               <Input label="Date" type="date" />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Dialog Section */}
+      <section style={{ marginBottom: '3rem' }}>
+        <h2 style={{ marginBottom: '1.5rem' }}>Dialog</h2>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          {/* Basic Dialog */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>Basic Dialog</h3>
+            <Button onClick={() => setBasicDialogOpen(true)}>Open Basic Dialog</Button>
+            <Dialog
+              open={basicDialogOpen}
+              onOpenChange={setBasicDialogOpen}
+              title="Welcome"
+              description="This is a basic dialog with a title and description."
+            >
+              <p>This is the main content of the dialog. You can put any content here.</p>
+            </Dialog>
+          </div>
+
+          {/* Dialog with Form */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>Dialog with Form Content</h3>
+            <Button onClick={() => setFormDialogOpen(true)}>Open Form Dialog</Button>
+            <Dialog
+              open={formDialogOpen}
+              onOpenChange={setFormDialogOpen}
+              title="Edit Profile"
+              description="Make changes to your profile here."
+            >
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <Input label="Name" placeholder="Enter your name" />
+                <Input label="Email" type="email" placeholder="Enter your email" />
+                <Input label="Bio" placeholder="Tell us about yourself" />
+              </div>
+            </Dialog>
+          </div>
+
+          {/* Dialog with Custom Footer */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>Dialog with Custom Footer</h3>
+            <Button onClick={() => setConfirmDialogOpen(true)}>Open Confirmation Dialog</Button>
+            <Dialog
+              open={confirmDialogOpen}
+              onOpenChange={setConfirmDialogOpen}
+              title="Confirm Action"
+              description="Are you sure you want to proceed with this action?"
+              footer={
+                <>
+                  <Button variant="outline" onClick={() => setConfirmDialogOpen(false)}>
+                    Cancel
+                  </Button>
+                  <Button onClick={() => setConfirmDialogOpen(false)}>Confirm</Button>
+                </>
+              }
+            >
+              <p>This action cannot be undone. Please confirm that you want to continue.</p>
+            </Dialog>
+          </div>
+
+          {/* Size Variants */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>Size Variants</h3>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <Button onClick={() => setSmallDialogOpen(true)}>Small Dialog</Button>
+              <Button onClick={() => setMediumDialogOpen(true)}>Medium Dialog</Button>
+              <Button onClick={() => setLargeDialogOpen(true)}>Large Dialog</Button>
+            </div>
+
+            <Dialog
+              open={smallDialogOpen}
+              onOpenChange={setSmallDialogOpen}
+              size="sm"
+              title="Small Dialog"
+              description="This is a small dialog (max-width: 400px)"
+            >
+              <p>Perfect for alerts and simple confirmations.</p>
+            </Dialog>
+
+            <Dialog
+              open={mediumDialogOpen}
+              onOpenChange={setMediumDialogOpen}
+              size="md"
+              title="Medium Dialog"
+              description="This is a medium dialog (max-width: 600px)"
+            >
+              <p>The default size, suitable for most use cases including forms and content.</p>
+            </Dialog>
+
+            <Dialog
+              open={largeDialogOpen}
+              onOpenChange={setLargeDialogOpen}
+              size="lg"
+              title="Large Dialog"
+              description="This is a large dialog (max-width: 800px)"
+            >
+              <p>Best for complex forms and detailed content that needs more space.</p>
+              <div style={{ marginTop: '1rem' }}>
+                <h4>Additional Content</h4>
+                <p>
+                  Large dialogs provide ample space for complex layouts, multiple form fields, or
+                  detailed information that requires more room to breathe.
+                </p>
+              </div>
+            </Dialog>
           </div>
         </div>
       </section>
