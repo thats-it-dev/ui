@@ -63,7 +63,7 @@
     position: relative;
   }
 
-  a::after, button::after {
+  a::after {
     content: '';
     position: absolute;
     bottom: -4px;
@@ -74,7 +74,7 @@
     transition: width 0.2s ease-out;
   }
 
-  a:hover::after, button:hover::after {
+  a:hover::after {
     width: 100%;
   }
 

@@ -1,7 +1,7 @@
 {
   "name": "@thatsit/ui",
-  "private": true,
-  "version": "0.0.1",
+  "private": false,
+  "version": "0.0.3",
   "type": "module",
   "files": [
     "dist"
@@ -9,11 +9,17 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "sideEffects": [
+    "./dist/index.css"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
+    },
+    "./index.css": {
+      "default": "./dist/index.css"
     }
   },
   "scripts": {
@@ -22,12 +28,14 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "peerDependencies": {
+      "tailwindcss": "^4.1.18"
+  },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
     "clsx": "^2.1.1",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "tailwindcss": "^4.1.18"
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

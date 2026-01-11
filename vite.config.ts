@@ -9,7 +9,12 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 export default defineConfig({
   plugins: [
     react(),
-    dts({ insertTypesEntry: true, include: ['src'] }),
+    dts({
+      insertTypesEntry: true,
+      include: ['src'],
+      tsconfigPath: './tsconfig.build.json',
+      outDir: 'dist'
+    }),
     libInjectCss(),
     viteStaticCopy({
       targets: [

@@ -3,29 +3,35 @@
   position: relative;
 }
 
-.underlineBase::after {
+.underlineBase::after, .underlinePrimary::after, .underlineSecondary::after, .underlineAccent::after {
   content: '';
   position: absolute;
   bottom: -4px;
-  left: 0;
-  width: 0%;
+  left: 13%;
+  width: 74%;
   height: 2px;
-  transition: width 0.2s ease-out;
+  background: linear-gradient(90deg, var(--transition-color, var(--underline-color)) 0%, var(--transition-color, var(--underline-color)) 50%, var(--underline-color) 50%, var(--underline-color) 100%);
+  background-position: 100% 0;
+  background-size: 200% 100%;
+  transition: background-position 0.3s ease-out;
 }
 
-.underlineBase:hover::after {
-  width: 100%;
+.underlineBase:hover::after,
+.underlinePrimary:hover::after,
+.underlineSecondary:hover::after,
+.underlineAccent:hover::after {
+  background-position: 0 0;
 }
 
 /* Color variants */
 .underlinePrimary::after {
-  background-color: var(--primary);
+  --transition-color: var(--primary);
 }
 
 .underlineSecondary::after {
-  background-color: var(--secondary);
+  --transition-color: var(--secondary);
 }
 
 .underlineAccent::after {
-  background-color: var(--accent);
+  --transition-color: var(--accent);
 }
