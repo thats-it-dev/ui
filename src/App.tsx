@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from './components/Button'
 import { Input } from './components/Input'
 import { Dialog } from './components/Dialog'
+import { Command } from './components/Command'
 
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
@@ -11,12 +12,28 @@ function App() {
   const [smallDialogOpen, setSmallDialogOpen] = useState(false)
   const [mediumDialogOpen, setMediumDialogOpen] = useState(false)
   const [largeDialogOpen, setLargeDialogOpen] = useState(false)
+  const [commandOpen, setCommandOpen] = useState(false)
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light'
     setTheme(newTheme)
     document.documentElement.setAttribute('data-theme', newTheme)
   }
+
+  // Cmd+K to open command palette
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        setCommandOpen(open => !open)
+      }
+      if (e.key === 'Escape') {
+        setCommandOpen(false)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   return (
     <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
@@ -161,6 +178,11 @@ console.log(greet('World'))`}</code></pre>
             <Input placeholder="Enter text..." />
           </div>
 
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>checkbox</h3>
+            <Input type="checkbox"/>
+          </div>
+
           {/* With Label */}
           <div>
             <h3 style={{ marginBottom: '1rem' }}>With Label</h3>
@@ -301,6 +323,81 @@ console.log(greet('World'))`}</code></pre>
                 </p>
               </div>
             </Dialog>
+          </div>
+        </div>
+      </section>
+
+      {/* Command Palette Section */}
+      <section style={{ marginBottom: '3rem' }}>
+        <h2 style={{ marginBottom: '1.5rem' }}>Command Palette</h2>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          {/* Inline Command */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>Inline Command</h3>
+            <Command label="Command Menu">
+              <Command.Input placeholder="Search commands..." />
+              <Command.List>
+                <Command.Empty>No results found.</Command.Empty>
+                <Command.Group heading="Actions">
+                  <Command.Item onSelect={() => alert('New File')}>New File</Command.Item>
+                  <Command.Item onSelect={() => alert('New Folder')}>New Folder</Command.Item>
+                  <Command.Item onSelect={() => alert('Save')}>Save</Command.Item>
+                </Command.Group>
+                <Command.Separator />
+                <Command.Group heading="Settings">
+                  <Command.Item onSelect={() => alert('Preferences')}>Preferences</Command.Item>
+                  <Command.Item onSelect={toggleTheme}>Toggle Theme</Command.Item>
+                </Command.Group>
+              </Command.List>
+            </Command>
+          </div>
+
+          {/* Command in Dialog */}
+          <div>
+            <h3 style={{ marginBottom: '1rem' }}>Command in Dialog (Press Cmd+K)</h3>
+            <Button onClick={() => setCommandOpen(true)}>Open Command Palette</Button>
+            {commandOpen && (
+              <div
+                style={{
+                  position: 'fixed',
+                  inset: 0,
+                  background: 'rgba(0,0,0,0.5)',
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  justifyContent: 'center',
+                  paddingTop: '20vh',
+                  zIndex: 100
+                }}
+                onClick={() => setCommandOpen(false)}
+              >
+                <div onClick={(e) => e.stopPropagation()}>
+                  <Command label="Command Menu">
+                    <Command.Input placeholder="Type a command or search..." autoFocus />
+                    <Command.List>
+                      <Command.Empty>No results found.</Command.Empty>
+                      <Command.Group heading="Suggestions">
+                        <Command.Item onSelect={() => { alert('Create Note'); setCommandOpen(false); }}>
+                          Create Note
+                        </Command.Item>
+                        <Command.Item onSelect={() => { alert('Open Settings'); setCommandOpen(false); }}>
+                          Open Settings
+                        </Command.Item>
+                        <Command.Item onSelect={() => { toggleTheme(); setCommandOpen(false); }}>
+                          Toggle Theme
+                        </Command.Item>
+                      </Command.Group>
+                      <Command.Separator />
+                      <Command.Group heading="Recent">
+                        <Command.Item>Meeting Notes</Command.Item>
+                        <Command.Item>Project Ideas</Command.Item>
+                        <Command.Item>Shopping List</Command.Item>
+                      </Command.Group>
+                    </Command.List>
+                  </Command>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

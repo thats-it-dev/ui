@@ -9,7 +9,6 @@
   cursor: pointer;
   font-family: inherit;
   text-decoration: none;
-  position: relative;
   background-color: var(--bg);
   color: var(--text-primary);
 }
@@ -46,7 +45,7 @@
 }
 
 .outline:hover {
-  background-color: var(--surface);
+  color: var(--primary);
 }
 
 .ghost {
@@ -55,7 +54,16 @@
 }
 
 .ghost:hover {
-  background-color: var(--surface);
+  color: var(--primary);
+}
+
+.danger {
+  background-color: transparent;
+  color: inherit;
+}
+
+.danger:hover {
+  color: var(--accent);
 }
 
 /* Sizes */

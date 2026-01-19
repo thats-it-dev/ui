@@ -7,6 +7,9 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 // https://vite.dev/config/
 export default defineConfig({
+  resolve: {
+    dedupe: ['react', 'react-dom'],
+  },
   plugins: [
     react(),
     dts({
@@ -34,11 +37,12 @@ export default defineConfig({
       formats: ['es', 'cjs']
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['react', 'react-dom', 'cmdk'],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          cmdk: 'cmdk',
         },
       },
     },

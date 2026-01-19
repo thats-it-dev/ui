@@ -11,7 +11,7 @@ export interface ButtonProps
    * The variant of the button.
    * @default 'default'
    */
-  variant?: 'default' | 'secondary' | 'outline' | 'ghost'
+  variant?: 'default' | 'secondary' | 'outline' | 'ghost' | 'danger'
   /**
    * The size of the button.
    * @default 'md'
