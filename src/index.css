@@ -5,6 +5,14 @@
 /* Import root styles with fonts and CSS variables */
 @import './styles/root.css';
 
+/* Override Tailwind's default font variables to use @thatsit/ui fonts */
+@layer theme {
+  :root {
+    --font-sans: 'Inter', sans-serif;
+    --default-font-family: 'Inter', sans-serif;
+  }
+}
+
 /* Base Styles */
 @layer base {
   /* Reset and Base */
